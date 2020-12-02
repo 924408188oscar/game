@@ -19,7 +19,7 @@ public class MyCustomerTemplate {
 
     }
 
-    private static String getBody(String uuid, String UserId, String name) {
+    public static String getBody(String uuid, String UserId, String name) {
         String template="{\n" +
                 "  \"formJson\": [\n" +
                 "    {\n" +

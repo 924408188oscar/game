@@ -4,23 +4,7 @@ import java.util.UUID;
 
 public class RecommendTemplate {
 
-    public static String getUUID(){
-        String uuid = UUID.randomUUID().toString();
-        return uuid;
-    }
-
-    public static void main(String[] args) {
-        String uuid = UUID.randomUUID().toString();
-
-
-        String cc=getBody(uuid,"1111111111111111", "name");
-        System.out.println(cc);
-
-
-
-    }
-
-    private static String getBody(String uuid, String UserId, String name) {
+    public static String getBody(String uuid, String UserId, String name) {
         String template="{\n" +
                 "  \"formJson\": [\n" +
                 "    {\n" +
@@ -140,5 +124,20 @@ public class RecommendTemplate {
                 "}";
 
         return  template;
+    }
+    public static String getUUID(){
+        String uuid = UUID.randomUUID().toString();
+        return uuid;
+    }
+
+    public static void main(String[] args) {
+        String uuid = UUID.randomUUID().toString();
+
+
+        String cc=getBody(uuid,"1111111111111111", "name");
+        System.out.println(cc);
+
+
+
     }
 }

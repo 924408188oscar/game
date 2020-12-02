@@ -42,6 +42,41 @@ public class JsonTest {
             return  id;
 
         }
+        //获取json里没有键时，的id值
+    public static String getArrayNoKeyId(String data, String jsonArraynode,String noKey,  String key){
+
+
+        String id="0";
+        JSONArray jsonArray;
+        jsonArray=getJsonArray(data,jsonArraynode);
+
+        if(!jsonArray.isEmpty()) {
+            for (int i = 0; i < jsonArray.size(); i++) {
+                // System.out.println("---------------" + result);
+                JSONObject jsonObject;
+                jsonObject = (JSONObject) jsonArray.getJSONObject(i);
+                String noKeyValue="0";
+
+                noKeyValue = jsonObject.getString(noKey);
+
+                //  if(null== nodeJSONArray) {
+                try {
+                    if (noKeyValue.equals(null)) {
+
+                    }
+                } catch (NullPointerException e) {
+                    System.out.println("noKeyValue.equals(null): " + e);
+                    id = jsonObject.getString(key);
+                     break;
+                }
+
+
+            }
+        }
+
+        return  id;
+
+    }
 
     //抽取json数组中的每个数组某个字段Key的value
     public static String getNodeArrayKey(String data, String node,String key) {
