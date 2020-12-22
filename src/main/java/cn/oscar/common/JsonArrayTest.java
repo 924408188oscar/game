@@ -56,6 +56,7 @@ public class JsonArrayTest {
                         String name;
                         name = rolejsonObject.getString("name");
 
+
                         if (name.equals(rold)) {
                             id = rolejsonObject.getString("id");
                         }

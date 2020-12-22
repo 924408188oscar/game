@@ -1,7 +1,7 @@
 package cn.oscar.sigmayun;
 
 import java.util.UUID;
-
+//自定义表单--推荐表单
 public class RecommendTemplate {
 
     public static String getBody(String uuid, String UserId, String name) {

@@ -1,7 +1,7 @@
 package cn.oscar.sigmayun;
 
 import java.util.UUID;
-
+//自定义--我的到访模板
 public class MyVisitTemplate {
 
     public static String getBody(String uuid, String UserId, String name) {

@@ -29,7 +29,7 @@ public class OnWeek {
         return result;
     }
 
-
+   //获取某一周的时间
     public static String[] onWeekX(int x){
         LocalDate today = LocalDate.now();
         LocalDate monday = today.with(TemporalAdjusters.previousOrSame( DayOfWeek.MONDAY));
@@ -37,6 +37,17 @@ public class OnWeek {
         String[] resultDate = new String[] {"0","0"};
         resultDate[0]= String.valueOf(monday.plusDays(x));
         resultDate[1]=String.valueOf(sunday.plusDays(x));
+
+        return resultDate;
+    }
+    //获取周一 到周日（x+y）
+    public static String[] onWeekX(int x,int y){
+        LocalDate today = LocalDate.now();
+        LocalDate monday = today.with(TemporalAdjusters.previousOrSame( DayOfWeek.MONDAY));
+        LocalDate sunday = today.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY ));
+        String[] resultDate = new String[] {"0","0"};
+        resultDate[0]= String.valueOf(monday.plusDays(x));
+        resultDate[1]=String.valueOf(sunday.plusDays(x+y));
 
         return resultDate;
     }
@@ -67,7 +78,7 @@ public class OnWeek {
         System.out.println(sunday.plusDays(1));
 
         System.out.println("onDate:"+onDate(-1));
-        String[] aa=onWeekX(-7);
+        String[] aa=onWeekX(0,84);
         System.out.println(aa[0]);
         System.out.println(aa[1]);
         System.out.println("==================================");
