@@ -78,7 +78,7 @@ public class OnWeek {
         System.out.println(sunday.plusDays(1));
 
         System.out.println("onDate:"+onDate(-1));
-        String[] aa=onWeekX(0,84);
+        String[] aa=onWeekX(-1,1);
         System.out.println(aa[0]);
         System.out.println(aa[1]);
         System.out.println("==================================");

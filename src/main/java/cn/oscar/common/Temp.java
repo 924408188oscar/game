@@ -23,5 +23,27 @@ public class Temp {
         System.out.println(time);
 
 
+
+        int random=(int)(Math.random()*10+1);
+        System.out.println(random);
+//        String content="";
+//        String aa[]=ProcTemplate.getUUIdVaule(content);
+//
+//        System.out.println(aa.length);
+//        System.out.println(aa[0]);
+//        System.out.println(aa[1]);
+//        System.out.println(aa[2]);
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
