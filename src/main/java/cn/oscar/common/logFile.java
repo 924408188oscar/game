@@ -32,7 +32,6 @@ public class logFile {
     }
 
 
-
     public static void logfilezip() throws IOException {
         File fileOut = new File(fileName);
 
