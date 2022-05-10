@@ -74,7 +74,7 @@ public class JsonArrayTest {
 
         return id;
     }
-    //通过key与keyvalue 去取另一个id的value
+    //json数组：通过key与keyvalue 去取另一个id的value
     public static String jsonArrayGetId(String data, String key,String keyValue,String id) {
         String value = "";
         JSONArray jsonArray;
@@ -92,7 +92,7 @@ public class JsonArrayTest {
                     if(null != name) {
                         if (name.contains(keyValue) & !id.isEmpty()) {
 
-                            value = jsonObject.getString("id");
+                            value = jsonObject.getString(id);
                            // System.out.println(value);
                         }
                     }
@@ -104,83 +104,52 @@ public class JsonArrayTest {
         return value;
     }
 
+    //获取转课时3组课时ID和课时名称
+    public static String[] getPeriodCards(String data,String key,String keyValue,String node){
+        String[] result={"0","0","0","0","0","0","0","0","0"};
+        JSONArray jsonArray,nodeArray;
+        jsonArray = parseArray(data);
+        for (int i = 0; i < jsonArray.size(); i++) {
+            // System.out.println("---------------" + result);
+            JSONObject jsonObject;
+            jsonObject = (JSONObject) jsonArray.getJSONObject(i);
+            String value=jsonObject.getString(key);
 
-    public static void main(String[] args) {
+            if(value.equals(keyValue)) {
+                System.out.println("===:"+value);
+                if ( !node.isEmpty() ) {
+                    nodeArray = jsonObject.getJSONArray(node);
+                    if ( !nodeArray.isEmpty() ) {
+                        for (int j = 0; j < nodeArray.size(); j++) {
+                            if ( j > 2 ) break;
+                            JSONObject nodeObject;
+                            nodeObject = (JSONObject) nodeArray.getJSONObject(j);
+                            result[j] = nodeObject.getString("id");
+                            result[j + 3] = nodeObject.getString("name");
+                            result[j + 6] = nodeObject.getString("version");
 
-
-//        String resq_data = "[{\"id\":\"6699567235670872064\",\"name\":\"人事\"},{\"id\":\"6699567236815917056\",\"name\":\"市场\"},{\"id\":\"6699567237902241792\",\"name\":\"学管\"},{\"id\":\"6699567239575769088\",\"name\":\"教学\"},{\"id\":\"6699567240125222912\",\"name\":\"运营\"},{\"id\":\"6704936633520754688\",\"name\":\"客服\"},{\"id\":\"6708924638287761408\",\"name\":\"语文\"},{\"id\":\"6712181918340878336\",\"name\":\"行政\"}]";
-//
-//        System.out.println(resq_data);
-//        String[] aa = JsonArrayToJA(resq_data, "id");
-//
-//        System.out.println(aa[0]);
-//        System.out.println(aa[1]);
-
-
-        String req ="[\n" +
-                "    {\n" +
-                "        \"createdAt\": \"2020-12-04T00:59:27.424050Z\",\n" +
-                "        \"createdBy\": \"6730355031876440064\",\n" +
-                "        \"approvalComponents\": \"[]\",\n" +
-                "        \"isEnabled\": 0,\n" +
-                "        \"name\": \"推荐单\",\n" +
-                "        \"icon\": \"http:\\/\\/qiniu.sishuxuefu.com\\/tiansiyu\\/20191113\\/lbr7QOtdS4xy.png\",\n" +
-                "        \"id\": \"6740429262790336512\",\n" +
-                "        \"conditionComponents\": \"[]\",\n" +
-                "        \"type\": 1,\n" +
-                "        \"platform\": 3,\n" +
-                "        \"updatedAt\": \"2020-12-04T00:59:27.424050Z\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "        \"createdAt\": \"2020-12-04T00:59:25.734063Z\",\n" +
-                "        \"createdBy\": \"6730355031876440064\",\n" +
-                "        \"approvalComponents\": \"[]\",\n" +
-                "        \"isEnabled\": 0,\n" +
-                "        \"name\": \"离职申请\",\n" +
-                "        \"icon\": \"http:\\/\\/qiniu.sishuxuefu.com\\/tiansiyu\\/20191113\\/lbr7QOtdS4xy.png\",\n" +
-                "        \"id\": \"6740429255827791872\",\n" +
-                "        \"conditionComponents\": \"[]\",\n" +
-                "        \"type\": 1,\n" +
-                "        \"platform\": 3,\n" +
-                "        \"updatedAt\": \"2020-12-04T00:59:25.734063Z\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "        \"createdAt\": \"2020-12-04T00:59:25.429357Z\",\n" +
-                "        \"createdBy\": \"6730355031876440064\",\n" +
-                "        \"approvalComponents\": \"[]\",\n" +
-                "        \"isEnabled\": 0,\n" +
-                "        \"name\": \"入职申请\",\n" +
-                "        \"icon\": \"http:\\/\\/qiniu.sishuxuefu.com\\/tiansiyu\\/20191113\\/lbr7QOtdS4xy.png\",\n" +
-                "        \"id\": \"6740429254502391808\",\n" +
-                "        \"conditionComponents\": \"[]\",\n" +
-                "        \"type\": 1,\n" +
-                "        \"platform\": 3,\n" +
-                "        \"updatedAt\": \"2020-12-04T00:59:25.429357Z\"\n" +
-                "    }\n" +
-                "]";
-
-        System.out.println("1111:"+jsonArrayGetId(req, "name","入职","id"));
-
-        JsonArrayToJA(req,"id");
-
-        String aa="[\n" +
-                "  {\n" +
-                "    \"id\": \"6573027021901926400\",\n" +
-                "    \"value\": \"1111\",\n" +
-                "    \"sort\": 1\n" +
-                "  },\n" +
-                "  {\n" +
-                "    \"id\": \"6573027021901926401\",\n" +
-                "    \"value\": \"2222\",\n" +
-                "    \"sort\": 2\n" +
-                "  },\n" +
-                "]";
+                        }
+                    }
+                }
+            }
+        }
 
 
-        System.out.println(jsonArrayGetId(aa,"value","2222","id"));
 
+        return result;
     }
+    public static void main(String[] args) {
+        String content= "{\n" +
 
+                "}";
+
+        String[] periodMax=JsonArrayTest.getPeriodCards(content,"id","6778562063146029056","children");
+
+
+     for(int q = 0;q<9;q++){
+            System.out.println(periodMax[q]);
+        }
+    }
 
 }
 

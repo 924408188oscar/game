@@ -19,7 +19,7 @@ public class Env {
         for (int i = 0; i < jsonArray.size(); i++) {
             JSONObject jsonObjectNode;
             jsonObjectNode = (JSONObject) jsonArray.getJSONObject(i);//把每个数组转的josn对象
-            SSTTid=jsonObjectNode.getString("id");
+
            // System.out.println(SSTTid);
             JSONArray jsonArrayOrgs;
             jsonArrayOrgs = parseArray(jsonObjectNode.getString("orgs"));//把string改变为Json数组
@@ -30,6 +30,7 @@ public class Env {
                 String orgName1=jsonObjectNode1.getString("name");
                 if(orgName1.contains(orgName)) {
                     orgId = jsonObjectNode1.getString("id");
+                    SSTTid=jsonObjectNode.getString("id");
                     break;
                 }
             }
@@ -42,60 +43,9 @@ public class Env {
     }
 
     public static void main(String[] args) {
-        String content="{\n" +
-                "  \"userInfo\": {\n" +
-                "    \"name\": \"李若亮\",\n" +
-                "    \"phone\": \"15505883399\",\n" +
-                "    \"status\": 2,\n" +
-                "    \"userId\": \"6716553800968179712\"\n" +
-                "  },\n" +
-                "  \"tenants\": [\n" +
-                "    {\n" +
-                "      \"id\": \"6670924919376842752\",\n" +
-                "      \"name\": \"华夏教育\",\n" +
-                "      \"orgs\": [\n" +
-                "        {\n" +
-                "          \"id\": \"6670925975221571584\",\n" +
-                "          \"name\": \"华夏红旗\",\n" +
-                "          \"img\": \"http://qiniu.sishuxuefu.com/6670924919376842752.png?time=1597284931138\",\n" +
-                "          \"isRoot\": false\n" +
-                "        }\n" +
-                "      ]\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"id\": \"6703857617044901888\",\n" +
-                "      \"name\": \"线上测试专用企业\",\n" +
-                "      \"orgs\": [\n" +
-                "        {\n" +
-                "          \"id\": \"6703857619913805824\",\n" +
-                "          \"name\": \"线上测试专用企业\",\n" +
-                "          \"img\": \"http://qiniu.sishuxuefu.com/6703857617044901888.png\",\n" +
-                "          \"isRoot\": true\n" +
-                "        }\n" +
-                "      ]\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"id\": \"6758577358405505024\",\n" +
-                "      \"name\": \"晞格玛教育757\",\n" +
-                "      \"orgs\": [\n" +
-                "        {\n" +
-                "          \"id\": \"6758577361853222912\",\n" +
-                "          \"name\": \"晞格玛教育757\",\n" +
-                "          \"img\": \"\",\n" +
-                "          \"isRoot\": true\n" +
-                "        },\n" +
-                "        {\n" +
-                "          \"id\": \"6758586866796204032\",\n" +
-                "          \"name\": \"学军中学\",\n" +
-                "          \"img\": \"\",\n" +
-                "          \"isRoot\": false\n" +
-                "        }\n" +
-                "      ]\n" +
-                "    }\n" +
-                "  ]\n" +
-                "}";
+        String content="{\"userInfo\":{\"name\":\"郑临佑\",\"phone\":\"13905888390\",\"status\":2,\"userId\":\"6787546948099510272\"},\"tenants\":[{\"id\":\"6786483569788325888\",\"name\":\"晞格玛教育410\",\"status\":1,\"orgs\":[{\"id\":\"6786484420829384704\",\"name\":\"希望小学\",\"status\":1,\"img\":\"http://qiniu.sishuxuefu.com/6786483569788325888.png\",\"isRoot\":false}]},{\"id\":\"6791199177314537472\",\"name\":\"晞格玛教育117\",\"status\":1,\"orgs\":[{\"id\":\"6791199180833558528\",\"name\":\"晞格玛教育117\",\"status\":1,\"img\":\"http://qiniu.sishuxuefu.com/6791199177314537472.png\",\"isRoot\":true},{\"id\":\"6791236525737775104\",\"name\":\"学军中学\",\"status\":1,\"img\":\"http://qiniu.sishuxuefu.com/6791199177314537472.png\",\"isRoot\":false}]}]}";
 
-        String[] aa=Env.getSSTTandOrgId(content,"tenants","晞格玛教");
+        String[] aa=Env.getSSTTandOrgId(content,"tenants","希望小学");
         System.out.println(aa[0]+"\n"+aa[1]);
 
 

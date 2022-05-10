@@ -20,6 +20,21 @@ public class Appointment {
 
         return body;
     }
+//通过funcSubId 来区分是预约还是 咨询记录
+    public static String getBody(String startUserName, String templateId,String recordId,String templateKey,String fromValue, String tasks,String funcSubId) {
+        String body = "{\n" +
+                "  \"startUserName\": \""+startUserName+"\",\n" + fromValue +",\n" +
+                "  \"templateId\": \""+templateId+"\",\n" +
+                "  \"formInstFuncRelDto\": {\n" +
+                "    \"funcSecondId\": \"MyCustomer\",\n" +
+                "    \"funcSubId\": \""+funcSubId+"\",\n" +
+                "    \"recordId\": \""+recordId+"\"\n" +
+                "  },\n" +
+                "  \"templateKey\": \""+templateKey+"\",\n" +tasks+
+                "}";
+
+        return body;
+    }
 
     public static String getUUID() {
         String uuid = UUID.randomUUID().toString();

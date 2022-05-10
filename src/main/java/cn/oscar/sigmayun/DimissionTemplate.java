@@ -3,7 +3,7 @@ package cn.oscar.sigmayun;
 import java.util.UUID;
 
 public class DimissionTemplate {
-    public static String getBody(String uuid, String UserId, String name) {
+    public static String getBody(String uuid, String UserId, String name,String orgId,String orgName) {
 
         String template ="{\n" +
                 "  \"formJson\": [\n" +
@@ -80,6 +80,13 @@ public class DimissionTemplate {
                 "    }\n" +
                 "  ],\n" +
                 "  \"name\": \"离职申请\",\n" +
+                "    \"formCategoryId\":\"0\",\n" +
+                "    \"visibleOrgs\":[\n" +
+                "        {\n" +
+                "            \"id\":\""+orgId+"\",\n" +
+                "            \"name\":\""+orgName+"\"\n" +
+                "        }\n" +
+                "    ],\n" +
                 "  \"type\": 1,\n" +
                 "  \"platform\": 3,\n" +
                 "  \"conditionComponents\": [],\n" +
@@ -145,7 +152,7 @@ public class DimissionTemplate {
         String uuid = UUID.randomUUID().toString();
 
 
-        String cc = getBody(uuid, "1111111111111111", "name");
+        String cc = getBody(uuid, "1111111111111111", "name","135345345","学军中学");
         System.out.println(cc);
 
 
