@@ -1,4 +1,5 @@
 package cn.oscar.common;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -6,6 +7,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 public class SHA256Util {
     /**
@@ -58,6 +60,14 @@ public class SHA256Util {
     public static void main(String[] args) throws ParseException {
 
         System.out.println(getSHA256String("Aasdf1234"));
+        System.out.println(getUuid());
 
     }
+
+    public static String getUuid() {
+        String uuid = UUID.randomUUID().toString().replaceAll("-","");
+        return uuid;
+    }
+
+
 }

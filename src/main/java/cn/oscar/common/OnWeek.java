@@ -69,6 +69,25 @@ public class OnWeek {
         return date;
     }
 
+    public static String getLastMonthDay(int lastMonth,int x){
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.add(Calendar.MONTH,lastMonth);
+        cal.set(Calendar.DAY_OF_MONTH, 1);
+        String date="";
+        if(x == 1)
+        {
+            date = new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime());
+
+        }else {
+            cal.roll(Calendar.DAY_OF_MONTH, -1);
+            date=new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime());
+        }
+        return date;
+
+    }
+
     public static void main(String[] args) {
 
         LocalDate today = LocalDate.now();
@@ -76,16 +95,20 @@ public class OnWeek {
         LocalDate sunday = today.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY ));
         System.out.println(monday.plusDays(1));
         System.out.println(sunday.plusDays(1));
+        System.out.println("==================================");
+        System.out.println("onDate:"+onDate(1));
+        String[] aa=onWeekX(0);
 
-        System.out.println("onDate:"+onDate(-1));
-        String[] aa=onWeekX(-1,1);
         System.out.println(aa[0]);
         System.out.println(aa[1]);
         System.out.println("==================================");
         System.out.println(getMonthDay(-1));
 
-
-
+        //System.out.println(onDate(-6));
+        //获取上个月第一天日期
+        System.out.println(getLastMonthDay(-1,1));
+        //获取上个月最后一天的日期
+        System.out.println(getLastMonthDay(-1,-1));
 
     }
 
